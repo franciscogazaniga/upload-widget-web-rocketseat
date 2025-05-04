@@ -13,6 +13,7 @@
     "@radix-ui/react-collapsible": "^1.1.8",
     "@radix-ui/react-progress": "^1.1.4",
     "lucide-react": "^0.507.0",
+    "motion": "^12.9.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.8",

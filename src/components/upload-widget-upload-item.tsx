@@ -12,7 +12,7 @@ interface UploadWidgetUploadItemProps {
 
 export function UploadwidgetUploadItem({ uploadId, upload }: UploadWidgetUploadItemProps) {
   const cancelUpload = useUploads(store => store.cancelUpload)
-  const progress = Math.min(100, Math.round((upload.uploadSizeInBytes * 100) / upload.originalSizeInBytes))
+  const progress = Math.min(100, upload.compressedSizeInBytes ? Math.round((upload.uploadSizeInBytes * 100) / upload.compressedSizeInBytes) : 0)
 
   return(
     <motion.div 
@@ -65,8 +65,9 @@ export function UploadwidgetUploadItem({ uploadId, upload }: UploadWidgetUploadI
         </Button>
 
         <Button 
-          disabled={upload.status !== 'success'}
+          disabled={!upload.remoteUrl}
           size="icon-sm"
+          onClick={() => upload.remoteUrl && navigator.clipboard.writeText(upload.remoteUrl)}
         >
           <Link2 className="size-4" strokeWidth={1.5} />
           <span className="sr-only">Copy remote URL</span>
